@@ -11,6 +11,13 @@ class User
 	end
 
 
+	def rated?(movie_id)
+
+		#movie_ratings keys contains movie_id ??
+
+	end
+
+
 	def compute_tag_proportions
 
 
