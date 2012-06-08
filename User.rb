@@ -1,8 +1,29 @@
 #User.rb
 
+
+
+
+
+
+
+
+=begin
+
+	Class represents Review objects
+
+	@tag_arr : an array of 18 integers representing the number of times the user has watched a movie of a given genre
+	@movie_ratings : a hash from movie id numbers to their corresponding rating from this user
+
+=end
+
+
+
 class User
 
-	def initialize(review, movie_list)
+
+	attr_reader :tag_arr, :movie_ratings
+
+	def initialize(review, movie)
 
 		@tag_arr = 
 

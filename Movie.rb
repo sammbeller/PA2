@@ -20,6 +20,8 @@ class Movie
 
 
 
+
+
 =begin
 
 	Array => Movie
@@ -44,15 +46,17 @@ class Movie
 
 =begin
 
-	Review => Array
+	Review, Movie => Array, Array
 
 	adds the rating field of a Review object to the Movie's array of ratings
 
 =end
 
-	def load_review(review)
+	def load_review(review, movie)
 
 		@reviews << review.rating
+
+		@tags = @tags.zip(movie.tags).map {|x| x.reduce(:+) }
 
 	end
 
