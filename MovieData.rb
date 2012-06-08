@@ -11,9 +11,9 @@ class MovieData
 
 	def rating(user_id, movie_id)
 
-		if @Users[user_id].rated?(movie_id)
+		if @users[user_id].rated?(movie_id)
 
-			@Users[user_id].rating(movie_id)
+			@users[user_id].rating(movie_id)
 
 		else
 
