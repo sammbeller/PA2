@@ -26,7 +26,7 @@ class Movie
 
 	takes an array representing the movie and initializes a Movie object
 
-	called with .new
+	called with Movie.new
 
 =end
 

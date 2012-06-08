@@ -6,6 +6,15 @@ class Review
 
 	attr_reader :user, :movie, :rating
 
+=begin
+
+	Array => Review
+
+	This method takes an array representing a review and initializes a Review object
+
+	called with Review.new
+
+=end
 
 	def initialize(review_array)
 

@@ -27,15 +27,17 @@ class MovieData
 
 
 
-	def predict
+	def predict(u,m)
+
+
 
 	end
 
-	def movies
+	def movies(u)
 
 	end
 
-	def viewers
+	def viewers(movie_id)
 
 	end
 
