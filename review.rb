@@ -1,16 +1,6 @@
 #review.rb
 
 
-
-
-
-
-
-
-
-
-
-
 =begin
 
 	Class representing Review objects

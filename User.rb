@@ -1,12 +1,6 @@
 #User.rb
 
 
-
-
-
-
-
-
 =begin
 
 	Class represents Review objects
@@ -23,6 +17,10 @@ class User
 
 	attr_reader :tag_arr, :movie_ratings
 
+
+
+
+
 	def initialize(review, movie)
 
 		@tag_arr = 
@@ -32,16 +30,32 @@ class User
 	end
 
 
+=begin
 
-	def load_review(review, movie_list)
+	Review => Hash
 
+	loads a review object and adds the review's movie field as a key with the review's rating field as teh associated value
 
+=end
+
+	def load_review(review, movie_array)
+
+		@movie_ratings[review.movie] = review.rating
+
+		d
 
 	end
 
 
 
-	#tests if the user has loaded a review for movie of given id
+=begin
+	
+	Fixnum => Boolean
+
+	takes a movie id number and tests to see if it is a key in the movie_ratings field
+
+=end
+
 	def rated?(movie_id) 
 
 		@movie_ratings.has_key?(movie_id)
@@ -55,6 +69,12 @@ class User
 
 
 	end
+
+=begin
+
+
+=end
+
 
 
 	def get_user_rating(movie_id)

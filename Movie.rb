@@ -14,6 +14,7 @@
 =end
 
 
+
 class Movie
 
 	attr_reader :tags, :title, :reviews
@@ -38,7 +39,7 @@ class Movie
 
 		@tags = movie_array[5..(movie_array - 1)]
 
-		@reviews = Array.new
+		@reviews = Hash.new
 
 	end
 
@@ -54,7 +55,7 @@ class Movie
 
 	def load_review(review, movie)
 
-		@reviews << review.rating
+		@reviews [review.user => review.rating]
 
 		@tags = @tags.zip(movie.tags).map {|x| x.reduce(:+) }
 
