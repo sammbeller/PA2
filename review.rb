@@ -7,7 +7,7 @@
 
 	@user : the user id number of the reviewing user
 	@movie : the movie id number of the reviewed movie
-	@rating : the rating given in the revuew
+	@rating : the rating given in the review
 
 =end
 
@@ -34,13 +34,14 @@ class Review
 
 	def initialize(review_array)
 
-		@user = review_array[0]
+		@user = review_array[0].to_i
 
-		@movie = review_array[1]
+		@movie = review_array[1].to_i
 
-		@rating = review_array[3]
+		@rating = review_array[3].to_i
 
 	end
 
 
 end
+

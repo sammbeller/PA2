@@ -11,6 +11,11 @@
 
 =end
 
+require 'Movie'
+
+require 'Review'
+
+require 'User'
 
 
 class MovieData
@@ -20,12 +25,44 @@ class MovieData
 
 	def initialize (folder_name, set_name = false)
 
+		movie_file = File.new(folder_name + "/u.item", "r")
+
+		@movies = Array.new
+
+		@reviews = Array.new
+
+		@users = Array.new
+
+		populate_movies(movie_file, @movies)
+
+		if set_name == false
+
+			@set_file = File.new(folder_name + "/u.data", "r")
+
+			distribute(@set_file)
+
+		else
+
+			@set_file = File.new(folder_name + "/" + set_name + ".base", "r")
+
+			@test_file = File.new(folder_name + "/" + set_name + ".test", "r")
+
+			distribute(set_file)
+
+		end
 
 	end
 
 
 
+=begin
 
+	Fixnum, Fixnum => Fixnum
+
+	rating takes a user id number and a movie id number, looks up the user, then checks to see if that user has seen the movie of the given number
+	if he/she has, the method returns that user's rating of the movie, else it returns 0
+
+=end
 	def rating(user_id, movie_id)
 
 		if @users[user_id].rated?(movie_id)
@@ -44,9 +81,9 @@ class MovieData
 
 
 
-	def predict(u,m)
+	def predict(user_id, movie_id)
 
-
+		movies[movie_id].average
 
 	end
 
@@ -60,7 +97,7 @@ class MovieData
 
 =end
 
-	def movies(user_id)
+	def seen(user_id)
 
 		@users[user_id].movie_ratings.keys
 
@@ -78,13 +115,75 @@ class MovieData
 
 	def viewers(movie_id)
 
+		@movies[movie_id].reviews.keys
+
 	end
 
 
 
 	def run_test (k)
 
+		test_set = MovieTest.new
+
 	end
 
 
+	private
+	def populate_movies(file, movies)
+
+		cur_line = file.gets
+
+		i = 0
+
+		while cur_line
+
+			@movies[i] = Movie.new(cur_line.split("|"))
+
+			cur_line = file.gets
+
+			i += 1
+
+		end
+
+	end
+
+	def distribute(file)
+
+		cur_line = file.gets
+
+		i = 0
+
+		while cur_line
+
+			@reviews[i] = Review.new(cur_line.split("|"))
+
+			user_id = @reviews[i].user
+
+			movie_id = @reviews[i].movie
+
+			if !(@users[user_id])
+
+				@users[user_id] = User.new(@reviews[i], @movies[movie_id])
+
+			else
+
+				@users[user_id].load_review(@reviews[i], @movies[movie_id])
+
+			end
+
+			cur_line = file.gets
+
+			i += 1
+
+		end
+
+	end
+
 end
+
+
+
+
+a = MovieData.new("ml-100k")
+
+puts a.movies[23]

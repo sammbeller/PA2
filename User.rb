@@ -3,10 +3,11 @@
 
 =begin
 
-	Class represents Review objects
+	Class represents User objects
 
-	@tag_arr : an array of 18 integers representing the number of times the user has watched a movie of a given genre
-	@movie_ratings : a hash from movie id numbers to their corresponding rating from this user
+	@tags : an array of 18 integers representing the number of times the user has watched a movie of a given genre
+	@proportions : 
+	@reviews : a hash from movie id numbers to their corresponding rating from this user
 
 =end
 
@@ -15,7 +16,7 @@
 class User
 
 
-	attr_reader :tag_arr, :movie_ratings
+	attr_reader :tags, :reviews, :proportions
 
 
 
@@ -23,9 +24,11 @@ class User
 
 	def initialize(review, movie)
 
-		@tag_arr = 
+		@tags = movie.tags
 
-		@movie_ratings = {review.movie => review.rating}#int -> int
+		@reviews = {review.movie => review.rating}
+
+		@proportions = Array.new(18)
 
 	end
 
@@ -38,11 +41,11 @@ class User
 
 =end
 
-	def load_review(review, movie_array)
+	def load_review(review, movie)
 
-		@movie_ratings[review.movie] = review.rating
+		@reviews[review.movie] = review.rating
 
-		d
+		@tags = @tags.zip(movie.tags).map {|x| x.reduce(:+) }
 
 	end
 
@@ -58,7 +61,7 @@ class User
 
 	def rated?(movie_id) 
 
-		@movie_ratings.has_key?(movie_id)
+		@reviews.has_key?(movie_id)
 
 	end
 
@@ -66,6 +69,10 @@ class User
 
 
 	def compute_tag_proportions
+
+		a = tags.reduce(:+)
+
+		@proportions = tags.map { |x| x/a.to_f }
 
 
 	end
@@ -79,9 +86,12 @@ class User
 
 	def get_user_rating(movie_id)
 
-		@movie_ratings[movie_id]
+		@reviews[movie_id]
 
 	end
 
+	def compare(user)
+ c.zip(d).map { |x| x.reduce(:-).abs }
+	end
 
 end

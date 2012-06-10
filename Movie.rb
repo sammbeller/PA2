@@ -35,9 +35,11 @@ class Movie
 
 	def initialize (movie_array)
 
-		@title movie_array[1]
+		@title = movie_array[1]
 
-		@tags = movie_array[5..(movie_array - 1)]
+		@tags = movie_array[5..(movie_array.size - 1)]
+
+		@tags.map! { |x| x.to_i }
 
 		@reviews = Hash.new
 
@@ -53,11 +55,9 @@ class Movie
 
 =end
 
-	def load_review(review, movie)
+	def load_review(review)
 
 		@reviews [review.user => review.rating]
-
-		@tags = @tags.zip(movie.tags).map {|x| x.reduce(:+) }
 
 	end
 
@@ -79,3 +79,5 @@ class Movie
 
 
 end
+
+
