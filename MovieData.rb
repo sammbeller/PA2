@@ -17,6 +17,8 @@ require 'Review'
 
 require 'User'
 
+require 'MovieTest'
+
 
 class MovieData
 
@@ -63,6 +65,7 @@ class MovieData
 	if he/she has, the method returns that user's rating of the movie, else it returns 0
 
 =end
+
 	def rating(user_id, movie_id)
 
 		if @users[user_id].rated?(movie_id)
@@ -125,6 +128,9 @@ class MovieData
 
 		test_set = MovieTest.new
 
+		cur_line = @test_set.gets
+
+
 	end
 
 
@@ -171,6 +177,8 @@ class MovieData
 
 			end
 
+			@movies[movie_id].load_review(@reviews[i])
+
 			cur_line = file.gets
 
 			i += 1
@@ -180,10 +188,3 @@ class MovieData
 	end
 
 end
-
-
-
-
-a = MovieData.new("ml-100k")
-
-puts a.movies[23]
