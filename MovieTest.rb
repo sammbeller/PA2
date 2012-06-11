@@ -28,14 +28,31 @@ class MovieTest
 
 	def stddev
 
+		mean = self.mean
+
+		dif = 0
+
+		@predictions.each { |x| dif += (((x[3] - x[2]).abs - mean) ** 2) }
+
+		Math.sqrt(dif)
+
 	end
 
 	def rms
+
+		a = 0
+
+		@predictions.each { |x| a += ((x[3] - x[2]) ** 2) }
+
+		a /= @predictions.size
+
+		Math.sqrt(a)
 
 	end
 
 	def to_a
 
+		@predictions
 
 	end
 
