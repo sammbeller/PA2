@@ -18,6 +18,8 @@ class User
 
 	attr_reader :tags, :reviews, :proportions
 
+	attr_accessor :comparison_array
+
 
 
 

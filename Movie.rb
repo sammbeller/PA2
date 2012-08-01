@@ -73,8 +73,16 @@ class Movie
 
 	def average
 
-		@reviews.reduce(:+)/(@reviews.length) #sum reviews and divide by views
+		if @reviews.size != 0
 
+			@reviews.reduce(:+)/(@reviews.length) #sum reviews and divide by views
+
+		else
+
+			0
+
+		end
+		
 	end
 
 

@@ -102,7 +102,7 @@ class MovieData
 
 	def seen(user_id)
 
-		@users[user_id].movie_ratings.keys
+		@users[user_id].reviews.keys
 
 	end
 
@@ -130,6 +130,14 @@ class MovieData
 
 		cur_line = @test_set.gets
 
+		distance = 0
+
+		@users.each_with_index { |x, i| 
+
+			@users.each_with_index(i) { |y|  }
+
+		  }
+
 
 	end
 
@@ -151,6 +159,8 @@ class MovieData
 
 		end
 
+		@movies.each { |x| puts x.title }
+
 	end
 
 	def distribute(file)
@@ -161,7 +171,7 @@ class MovieData
 
 		while cur_line
 
-			@reviews[i] = Review.new(cur_line.split("|"))
+			@reviews[i] = Review.new(cur_line.split)
 
 			user_id = @reviews[i].user
 
@@ -188,3 +198,5 @@ class MovieData
 	end
 
 end
+
+a = MovieData.new("ml-100k")

@@ -17,11 +17,11 @@ require 'MovieTest'
 the_data = MovieData.new('ml-100k')
 
 
-the_data.rating(100, 100)
+puts the_data.rating(196, 242)
 
-the_data.predict(100, 100)
+puts the_data.predict(196, 242)
 
-the_data.seen(100)
+puts the_data.seen(196)
 
-the_data.viewers(100)
+puts the_data.viewers(242)
 
